@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RingGuard | Forensic Intelligence Engine</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons & Libs -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <span>RingGuard</span>
+    </div>
+
+    <div class="nav">
+      <div class="nav-item active" id="nav-dash">
+        <i data-lucide="layout-grid"></i> Dashboard
+      </div>
+      <div class="nav-item" id="nav-graph">
+        <i data-lucide="network"></i> Graph Analysis
+      </div>
+      <div style="flex:1"></div>
+      <div class="nav-item" onclick="location.reload()">
+        <i data-lucide="upload-cloud"></i> New Upload
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <header class="topbar">
+      <div class="page-title">Dashboard Overview</div>
+      <div style="color:var(--text-secondary); font-size:0.85rem">v2.4.0 Enterprise</div>
+    </header>
+
+    <!-- Upload View -->
+    <section id="view-upload" class="view-section active">
+      <div class="upload-hero">
+        <h1 class="hero-head">Financial Fraud Detection</h1>
+        <p style="color:var(--text-secondary); margin-bottom:2rem">
+          Upload transaction logs to detect <span style="color:var(--accent)">Money Muling</span>,
+          <span style="color:var(--accent)">Smurfing</span>, and <span style="color:var(--accent)">Shell Chains</span>.
+        </p>
+
+        <div class="drop-zone" id="dropZone">
+          <i data-lucide="file-up" style="width:48px; height:48px; color:var(--text-secondary); margin-bottom:1rem"></i>
+          <h3>Drop CSV File Here</h3>
+          <p style="font-size:0.9rem; color:var(--text-secondary)">drag & drop or click to browse</p>
+          <input type="file" id="fileInput" accept=".csv" hidden>
+        </div>
+
+        <button id="analyzeBtn" class="btn-primary" disabled>Analyze for Fraud Rings →</button>
+      </div>
+    </section>
+
+    <!-- Dashboard View -->
+    <section id="view-dashboard" class="view-section">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span class="kpi-label">Avg Risk Score</span>
+          <span class="kpi-value" style="color:var(--risk-high)" id="kpi-risk">0%</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Fraud Rings</span>
+          <span class="kpi-value" id="kpi-rings">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Flagged Accounts</span>
+          <span class="kpi-value" id="kpi-flagged">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Processing Time</span>
+          <span class="kpi-value" id="kpi-time">0s</span>
+        </div>
+      </div>
+
+      <div class="dashboard-layout">
+        <!-- Graph Panel -->
+        <div class="panel-card" style="position:relative">
+          <div class="panel-header">
+            <span class="panel-title">Network Topology</span>
+            <div class="graph-toolbar">
+              <button class="tool-btn" id="zoomIn"><i data-lucide="plus"></i></button>
+              <button class="tool-btn" id="zoomOut"><i data-lucide="minus"></i></button>
+              <button class="tool-btn" id="fitView"><i data-lucide="maximize"></i></button>
+            </div>
+          </div>
+          <div id="graphContainer"></div>
+        </div>
+
+        <!-- List Panel -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">High Risk Accounts</span>
+          </div>
+          <div class="list-content" id="suspiciousList"></div>
+        </div>
+      </div>
+
+      <!-- Table Panel -->
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-title">Detected Fraud Rings</span>
+          <button class="btn-primary" style="padding:0.5rem 1rem; font-size:0.8rem">Export Report</button>
+        </div>
+        <div style="padding:1rem">
+          <table>
+            <thead>
+              <tr>
+                <th>Ring ID</th>
+                <th>Pattern Type</th>
+                <th>Members</th>
+                <th>Risk Score</th>
+              </tr>
+            </thead>
+            <tbody id="ringsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Tooltip -->
+  <div id="tooltip" class="tooltip"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>lucide.createIcons();</script>
+</body>
+
+</html>
