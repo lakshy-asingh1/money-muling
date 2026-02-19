@@ -100,4 +100,6 @@ Required canonical fields:
 - Heuristic legitimate-account filtering may need domain tuning for institution-specific traffic.
 
 ## Team Members
-[to be filled]
+- Lakshya Pratap Singh
+- Ayush Yadav
+- Om Singh
