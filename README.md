@@ -5,10 +5,10 @@
 ![D3.js](https://img.shields.io/badge/D3.js-7.8.5-orange)
 
 ## Live Demo URL
-[to be filled]
+[https://money-mulling-rift.netlify.app/]
 
 ## LinkedIn Video
-[to be filled]
+[https://www.linkedin.com/posts/lakshya-pratap-singh-889a76208_rifthackathon-moneymulingdetection-financialcrime-activity-7430397028637224960-GovU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTW3GkBXSjsfrfeILaKJa5KZncjJjjiR0g]
 
 ## Problem Statement
 Financial institutions need fast, interpretable detection of money muling structures in raw transaction logs. This project identifies high-risk account clusters and visualizes suspicious fund movement patterns for analyst triage.
