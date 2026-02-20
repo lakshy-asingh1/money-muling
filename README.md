@@ -1,4 +1,4 @@
-# RingGuard - Money Muling Detection System
+# Moneymuling - Money Muling Detection System
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-3.0-black)
